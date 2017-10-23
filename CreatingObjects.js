@@ -90,3 +90,24 @@ console.log("Brothers House: " , brothersHouse);
 console.log("Sisters House: " , sistersHouse);
 console.log("House: " , House);
 console.log("house: " , house);
+
+/* ------------------------------------------------------------------------------------- */
+
+//creating objects using Object.create
+
+var Student = {
+    name: "Aakash",
+    id: "1234",
+    age: "23",
+    subjects: function(){
+        var subjectList = ["Language 1", "Language 2", "Language 3", "Science & Technology",
+            "History & Civics", "Geography", "Commerce & Economics"];
+        return subjectList;      
+    }
+};
+var student_1 = Object.create(Student);
+console.log("--------------Students Details--------------");
+console.log("Student Name: " + student_1.name);
+console.log("Student Id: " + student_1.id);
+console.log("Student Age: " + student_1.age);
+console.log("Subjects: " + student_1.subjects());
