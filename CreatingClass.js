@@ -15,3 +15,6 @@ class Test {
 var test_var_1 = new Test(1, "One");
 console.log(test_var_1);
 test_var_1.color("red");
+
+
+

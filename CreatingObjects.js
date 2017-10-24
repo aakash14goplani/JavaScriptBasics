@@ -14,9 +14,24 @@ console.log("Ownership (self/rented): " , house.owership);
 
 /*illegal js identifier => any property name that is not a valid JavaScript identifier 
 (for example, a property name that has a space or a hyphen, or that starts with a number) 
-can only be accessed using the square bracket notation*/
+can only be accessed using the square bracket notation
+
+If the property name is stored in some variable or created through some expression, 
+then you have to use bracket notation:*/
 house['num+ber'] = "104";
 console.log("House Number: " , house['num+ber']);
+
+var name1 = 'propertyName';
+// the property will be `name`, not `propertyName`
+var obj = {
+    name1: 42
+}; 
+// same here
+obj.name1 = 42;
+console.log(obj.name1 , " ", obj);
+// this works, it will set `propertyName`
+obj[name1] = 42;
+console.log(obj);
 
 //adding functions to object
 house.price = function(area) {
@@ -111,3 +126,74 @@ console.log("Student Name: " + student_1.name);
 console.log("Student Id: " + student_1.id);
 console.log("Student Age: " + student_1.age);
 console.log("Subjects: " + student_1.subjects());
+
+/* ------------------------------------------------------------------------------------- */
+
+//creating objects using new Object Instance
+
+var NewObject = {}; //equivalent to var NewObject = new Object();
+NewObject.firstname = "fname";
+NewObject.lastname = "lname";
+NewObject['age'] = 55;
+NewObject['eyecolor'] = "eyecolor";
+console.log("New Object: " , NewObject);
+console.log("New Object Details: " + NewObject.firstname + " " + NewObject.lastname + " " + 
+NewObject.age + " " + NewObject['eyecolor']);
+
+/* ------------------------------------------------------------------------------------- 
+
+There is various way to define a function. It is totally based upon your requirement. 
+Below are the few styles :-*/
+
+//Object constructor
+var person = new Object();
+
+person.name = "Anand",
+person.getName = function(){
+  return this.name ; 
+};
+
+//Literal constructor
+var person = { 
+  name : "Anand",
+  getName : function (){
+   return this.name;
+  } 
+};
+
+//function Constructor
+function Person(name){
+  this.name = name;
+  this.getName = function(){
+    return this.name;
+  };
+} 
+
+//Prototype
+function Person(){}
+
+Person.prototype.name = "Anand";
+
+//Function/Prototype combination
+function Person(name){
+  this.name = name;
+} 
+Person.prototype.getName = function(){
+  return this.name;
+};
+
+//Singleton
+var person = new function(){
+  this.name = "Anand";
+}; 
+
+
+var objectliteral = {
+    func1: function(){ return "1"; },
+    func2: function(){ return "2"; },
+    func3: function(){ return "3"; }
+};
+console.log("objectliteral['func1']() => " + objectliteral['func1']() + " , " , objectliteral);
+var myfuncname='function1';
+objectliteral[myfuncname] = function(){ return "4"; };
+console.log("objectliteral[myfuncname](); => " , objectliteral[myfuncname]() + " , " , objectliteral);
