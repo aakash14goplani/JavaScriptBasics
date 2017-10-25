@@ -8,16 +8,17 @@ that either doesn’t exist, or is outside the scope of the executing code.
 */
 
 /*
-Error thrown when a variable/function is referenced that is not defined
+-- Error thrown when a variable/function is referenced that is not defined --
 console.log("ReferenceError => " + a);
 console.log("ReferenceError => " + abc());
 
-since var is declared but not initialized it will throw undefined
+-- since var is declared but not initialized it will throw undefined  --
 var a;
 console.log("ReferenceError => " + a);
 function abc() {}
 console.log("ReferenceError => " + abc());
 
+-- since var is out of scope it will throw Reference Error --
 var abc = "abc";
 function innerScope() {
     console.log("Parent variable in innerScope: " + abc);
@@ -31,4 +32,21 @@ console.log("Can access innerScope global variable: " + xyz + ", window.xyz: " +
 console.log("Cannot access innerScope variable: " + pqr);
 */
 
+var FOO = function() {
+    var my_var = 10; //shared variable available only inside your module
 
+    function bar() { // this function not available outside your module
+        alert(my_var); // this function can access my_var
+    }
+
+    return {
+        a_func: function() {
+            alert(my_var); // this function can access my_var
+        },
+        b_func: function() {
+            alert(my_var); // this function can also access my_var
+        }
+    };
+
+};
+console.log("Can access abc: " + FOO().bar());
